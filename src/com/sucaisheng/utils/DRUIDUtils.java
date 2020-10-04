@@ -24,6 +24,7 @@ public class DRUIDUtils {
         //1、读取配置文件
         Properties pro = new Properties();
         try {
+            //使用对象加载器读取properties文件
             pro.load(DRUIDUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
             //2、获取到数据连接池对象
             ds = DruidDataSourceFactory.createDataSource(pro);
