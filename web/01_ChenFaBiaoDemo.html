@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乘法表</title>
+    <style>
+        td{
+            border: 1px solid;
+        }
+    </style>
+    <script>
+        document.write("<table align='center'>");
+        let i,j;
+        for (i = 1; i <= 9; i ++){
+            document.write("<tr>");
+            for (j = 1; j <= i; j++){
+                document.write("<td>");
+                document.write(i + "*" + j + "=" + (i*j) + "&nbsp&nbsp&nbsp");
+                document.write("</td>");
+            }
+            document.write("</tr>");
+        }
+        document.write("</tabe>");
+    </script>
+</head>
+<body>
+
+</body>
+</html>
