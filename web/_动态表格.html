@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        table{
+            border: 1px solid;
+            margin: auto;
+            width: 500px;
+        }
+
+        td,th{
+            text-align: center;
+            border: 1px solid;
+        }
+        div{
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="id" placeholder="id">
+        <input type="text" id="name" placeholder="naem">
+        <input type="text" id="gender" placeholder="gender">
+        <input type="button" id="add" value="添加">
+    </div>
+
+    <table>
+        <caption>学生信息表</caption>
+        <tr>
+            <td>编号</td>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>令狐冲</td>
+            <td>男</td>
+            <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>周芷若</td>
+            <td>女</td>
+            <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>东方不败</td>
+            <td>？</td>
+            <td><a href="javascript:void(0)" onclick="delTr(this)">删除</a></td>
+        </tr>
+    </table>
+
+    <script>
+        /*
+           分析：
+               1.添加：
+                   1. 给添加按钮绑定单击事件
+                   2. 获取文本框的内容
+                   3. 创建td，设置td的文本为文本框的内容。
+                   4. 创建tr
+                   5. 将td添加到tr中
+                   6. 获取table，将tr添加到table中
+               2.删除：
+                   1.确定点击的是哪一个超链接
+                       <a href="javascript:void(0);" onclick="delTr(this);" >删除</a>
+                   2.怎么删除？
+                       removeChild():通过父节点删除子节点
+
+    */
+        //1. 给添加按钮绑定单击事件
+        document.getElementById("add").onclick = function () {
+
+            //2. 获取文本框的内容
+            let val_id = document.getElementById("id").value;
+            let val_name = document.getElementById("name").value;
+            let val_gender = document.getElementById("gender").value;
+
+            //3. 创建td，设置td的文本为文本框的内容。
+            let ele_id = document.createElement("td");
+            let text_id = document.createTextNode(val_id);
+            ele_id.appendChild(text_id);
+
+            let ele_name = document.createElement("td");
+            let text_name = document.createTextNode(val_name);
+            ele_name.appendChild(text_name);
+
+            let ele_gender = document.createElement("td");
+            let text_gender = document.createTextNode(val_gender);
+            ele_gender.appendChild(text_gender);
+
+            let ele_ta = document.createElement("td");
+            let ele_a = document.createElement("a");
+            let ele_adel = document.createTextNode("删除");
+            ele_a.appendChild(ele_adel);
+            ele_a.setAttribute("href","javascript:void(0)");
+            ele_a.setAttribute("onclick","delTr(this)")
+            ele_ta.appendChild(ele_a);
+
+            //4. 创建tr
+            let ele_tr = document.createElement("tr");
+            //5. 将td添加到tr中
+            ele_tr.appendChild(ele_id);
+            ele_tr.appendChild(ele_name);
+            ele_tr.appendChild(ele_gender);
+            ele_tr.appendChild(ele_ta);
+
+            //6. 获取table，将tr添加到table中
+            let ele_tab = document.getElementsByTagName("table")[0];
+            ele_tab.appendChild(ele_tr);
+        }
+
+        //删除方法
+        delTr = function (obj) {
+            let tr = obj.parentNode.parentNode;
+            let tab = tr.parentNode;
+            tab.removeChild(tr);
+        }
+
+    </script>
+</body>
+</html>
