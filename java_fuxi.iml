@@ -22,5 +22,15 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.16" level="application_server_libraries" />
     <orderEntry type="library" name="mysql-connector-java-8.0.17" level="project" />
     <orderEntry type="library" name="druid-1.1.10" level="project" />
+    <orderEntry type="module-library">
+      <library name="commons-pool2-2.8.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/commons-pool2-2.8.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/jedis-2.7.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
