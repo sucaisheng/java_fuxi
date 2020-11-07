@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jquery案例之抽奖</title>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-migrate-1.0.0.js"></script>
+</head>
+<body>
+
+<!-- 小像框 -->
+<div style="border-style:dotted;width:160px;height:100px">
+    <img id="img1ID" src="../img/man00.jpg" style="width:160px;height:100px"/>
+</div>
+
+<!-- 大像框 -->
+<div
+        style="border-style:double;width:800px;height:500px;position:absolute;left:500px;top:10px">
+    <img id="img2ID" src="../img/man00.jpg" width="800px" height="500px"/>
+</div>
+
+<!-- 开始按钮 -->
+<input
+        id="startID"
+        type="button"
+        value="点击开始"
+        style="width:150px;height:150px;font-size:22px"
+        onclick="imgStart()">
+
+<!-- 停止按钮 -->
+<input
+        id="stopID"
+        type="button"
+        value="点击停止"
+        style="width:150px;height:150px;font-size:22px"
+        onclick="imgStop()">
+
+
+<script language='javascript' type='text/javascript'>
+    //准备一个一维数组，装用户的像片路径
+    var imgs = [
+        "../img/man00.jpg",
+        "../img/man01.jpg",
+        "../img/man02.jpg",
+        "../img/man03.jpg",
+        "../img/man04.jpg",
+        "../img/man05.jpg",
+        "../img/man06.jpg"
+    ];
+    let intervalId;//循环时钟id
+    let index;//随机数
+    $(function () {
+        //开始时设置只能点击开始按钮
+        $("#startID").prop("disabled",false)
+        $("#stopID").prop("disabled",true)
+
+        //绑定开始按钮
+        $("#startID").click(function () {
+            //点击开始后只能点击停止按钮，不能点击开始按钮
+            $("#startID").prop("disabled",true)
+            $("#stopID").prop("disabled",false)
+
+            //设置循环显示时钟，20毫秒执行一次
+            intervalId = setInterval(function () {
+                //动态生成随机数，用来改变图片的src属性
+                index = Math.floor(Math.random()*7) //随机产生0到6之间的随机数
+                //设置图片的sec属性值
+                $("#img1ID").prop("src",imgs[index])
+            },100);
+        })
+
+        //绑定结束按钮
+        $("#stopID").click(function () {
+            //点击停止后只能点击开始按钮，不能点击停止按钮
+            $("#startID").prop("disabled",false)
+            $("#stopID").prop("disabled",true)
+
+            //清除时钟循环
+            clearInterval(intervalId)
+            //将大相框的src属性设置为和小相框一样
+            $("#img2ID").prop("src",imgs[index]).hide()
+            $("#img2ID").show("slow")
+        })
+
+    });
+
+</script>
+</body>
+</html>
