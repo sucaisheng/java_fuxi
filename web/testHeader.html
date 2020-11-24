@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#test").click(function () {
+                $.post({
+                    url : "http://localhost:8085/interviewer/details",
+                    headers:{
+                        Authorization : 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdWNhaXNoZW5nIiwiY3JlYXRlZCI6MTYwNDkwNzE2NzYyMywiZXhwIjoxNjA1NTExOTY3fQ.W14KMTvYDH_vz1dICCR-82Z1ZM4p83VJWT2e3IP4bZwwE4f-YChEKRXrIMFHCtQEja-kEYnCxjhtf9cpMB0L8w'
+                    },
+                    success:function (data) {
+                        console.log(data)
+                }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" id="test" value="提交">
+</body>
+</html>
